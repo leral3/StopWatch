@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        btn_start = findViewById(R.id.btn_start)
+        btn_refresh = findViewById(R.id.btn_refresh)
+        tv_millisecond = findViewById(R.id.tv_millisecond)
+        tv_second = findViewById(R.id.tv_second)
+        tv_minute = findViewById(R.id.tv_minute)
+
 
         //04. 버튼별 OnClickListener 등록
         btn_start.setOnClickListener(this)
@@ -41,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_start -> {
                 if(isRunning) {
                     pause()
-                }else {
+                } else {
                     start()
                 }
             }
@@ -69,11 +75,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val minute = time / 6000
 
             runOnUiThread {
-                tv_millisecond.text =
-                    if (milli_second < 10 ) ".0${milli_second}" else ".${milli_second}"
-                tv_second.text =
-                    if (second < 10) "0.${second}" else ":${second}"
-                tv_minute.text = "${minute}"
+                if (isRunning) {
+                    tv_millisecond.text =
+                        if (milli_second < 10 ) ".0${milli_second}" else ".${milli_second}"
+                    tv_second.text =
+                        if (second < 10) ":0${second}" else ":${second}"
+                    tv_minute.text = "${minute}"
+                }
             }
         }
     }
