@@ -81,6 +81,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun pause() {
         //07. 스톱워치 측정을 일시정지하는 로직
 
+        btn_start.text = "시작"
+        btn_start.setBackgroundColor(getColor(R.color.blue))
+
+        isRunning = false
+        timer?.cancel()
+
     }
 
     private fun refresh() {
