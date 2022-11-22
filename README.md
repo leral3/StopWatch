@@ -28,3 +28,19 @@ The StopWatch
  
 
 ***
+
+아쉬운 점 
+
+1. 랩타임을 기록할 때 textView.text 부분에 시간을 다시 계산하는데, start()함수에서 사용된 값을 사용하려면? 어떻게 해야하나
+fun recordLap() {
+        val laptime = time
+        val textView = TextView(this)
+
+        textView.text = "$lap LAP : ${laptime / 6000} : ${(laptime % 6000) / 100} . ${laptime % 100}"
+
+        lapLayout.addView(textView, 0)
+        lap++
+    } 
+    
+    
+2. 랩타임에 기록되는 시간의 문자열이 일시정지 눌렀을 때 나오는 시간 형식처럼 나오게 하려면?
