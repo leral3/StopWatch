@@ -24,5 +24,5 @@ The StopWatch
   
  테스트 결과 :
  
- <img src = "https://user-images.githubusercontent.com/48520160/203233465-16c6a8ba-f0bd-42ac-acb4-855dd1ae36e9.png" width = "200" , height = "450">
+ <img src = "https://user-images.githubusercontent.com/48520160/203233465-16c6a8ba-f0bd-42ac-acb4-855dd1ae36e9.png" width = "200" , height = "450"/>
 
