@@ -21,3 +21,8 @@ The StopWatch
  핵심 구성요소 :
   - 컨스트레인트 레이아웃
   - 스레드
+  
+ 테스트 결과 :
+ 
+ ![image](https://user-images.githubusercontent.com/48520160/203233465-16c6a8ba-f0bd-42ac-acb4-855dd1ae36e9.png)
+
