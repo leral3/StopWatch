@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import java.util.*
 import kotlin.concurrent.timer
@@ -20,9 +21,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     //03. 뷰 가저오기
     private lateinit var btn_start:Button
     private lateinit var btn_refresh: Button
+    private lateinit var btn_laptime: Button
     private lateinit var tv_millisecond: TextView
     private lateinit var tv_second: TextView
     private lateinit var tv_minute: TextView
+    private lateinit var lapLayout: LinearLayout
+    private var lap = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +35,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_start = findViewById(R.id.btn_start)
         btn_refresh = findViewById(R.id.btn_refresh)
+        btn_laptime = findViewById(R.id.btn_laptime)
         tv_millisecond = findViewById(R.id.tv_millisecond)
         tv_second = findViewById(R.id.tv_second)
         tv_minute = findViewById(R.id.tv_minute)
+        lapLayout = findViewById(R.id.lapLayout)
 
 
         //04. 버튼별 OnClickListener 등록
         btn_start.setOnClickListener(this)
         btn_refresh.setOnClickListener(this)
+        btn_laptime.setOnClickListener(this)
     }
 
 
@@ -54,10 +62,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_refresh -> {
                 refresh()
             }
+            R.id.btn_laptime -> {
+                recordLap()
+            }
         }
     }
 
-    private fun start() {
+    fun start() {
         //06. 스톱워치 측정을 시작하는 로직
 
         btn_start.text = "일시정지"
@@ -86,7 +97,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun pause() {
+    fun pause() {
         //07. 스톱워치 측정을 일시정지하는 로직
 
         btn_start.text = "시작"
@@ -97,10 +108,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun refresh() {
+    fun refresh() {
         //08. 초기화하는 로직
 
         timer?.cancel()  // 백그라운드 타이머 멈추기
+        lapLayout.removeAllViews()
 
         btn_start.text = "시작"
         btn_start.setBackgroundColor(getColor(R.color.blue))
@@ -111,4 +123,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tv_second.text = ":00"
         tv_minute.text = "00"
     }
+
+    fun recordLap() {
+        val laptime = time
+        val textView = TextView(this)
+
+        textView.text = "$lap LAP : ${laptime / 6000} : ${(laptime % 6000) / 100} . ${laptime % 100}"
+
+        lapLayout.addView(textView, 0)
+        lap++
+    }
+
 }
